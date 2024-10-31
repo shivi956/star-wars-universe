@@ -1,8 +1,6 @@
 export const Loading = () => {
   return (
-    <div
-      className={`flex items-center justify-center h-56 w-screen text-slate-100`}
-    >
+    <div className={`flex items-center justify-center h-56 w-auto`}>
       <div className="text-center">
         <svg
           className="animate-spin h-10 w-10 mx-auto mb-4"

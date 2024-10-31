@@ -21,7 +21,10 @@ const CharacterDetailsCard: React.FC<CharacterDetailsCardProps> = ({
   isFavourite,
   onAddFavourite,
 }) => (
-  <div className="container mx-auto mt-10 p-4 text-center bg-slate-400/95 rounded shadow-2xl w-96">
+  <div
+    data-testid={'characterDetailsCard'}
+    className="container mx-auto mt-10 p-4 text-center bg-slate-400/95 rounded shadow-2xl w-96"
+  >
     <h1 className="text-3xl font-bold mb-4">{name}</h1>
     <div className="mb-4">
       <p className="text-lg">

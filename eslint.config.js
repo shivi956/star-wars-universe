@@ -23,6 +23,24 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+
+      curly: ['error', 'all'],
+      'padding-line-between-statements': [
+        'error',
+        {
+          blankLine: 'always',
+          next: 'return',
+          prev: '*',
+        },
+      ],
+      'space-before-function-paren': [
+        'error',
+        {
+          anonymous: 'never',
+          asyncArrow: 'always',
+          named: 'never',
+        },
+      ],
     },
   },
 );

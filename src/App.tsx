@@ -1,10 +1,13 @@
-import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import CharacterDetails from './pages/CharacterDetails';
-import CharacterList from './pages/CharacterList';
-import Favourites from './pages/Favourites';
+import { Suspense, lazy, useEffect } from 'react';
 import RootLayout from './layouts/RootLayout';
-import ErrorPage from './pages/ErrorPage';
+import { useFavouriteStore } from './store/useFavouriteStore';
+import { Loading } from './components/Loading';
+
+const CharacterDetails = lazy(() => import('./pages/CharacterDetails'));
+const CharacterList = lazy(() => import('./pages/CharacterList'));
+const Favourites = lazy(() => import('./pages/Favourites'));
+const ErrorPage = lazy(() => import('./pages/ErrorPage'));
 
 const router = createBrowserRouter([
   {
@@ -32,7 +35,26 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  const { setFavourites } = useFavouriteStore();
+
+  useEffect(() => {
+    const storedFavourites = JSON.parse(
+      localStorage.getItem('favourites') ?? '[]',
+    );
+    setFavourites(storedFavourites);
+  }, [setFavourites]);
+
+  return (
+    <Suspense
+      fallback={
+        <div className="text-black">
+          <Loading />
+        </div>
+      }
+    >
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
 
 export default App;

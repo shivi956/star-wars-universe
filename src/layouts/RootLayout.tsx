@@ -5,7 +5,7 @@ import { ErrorBoundary } from '../components/ErrorBoundary';
 const RootLayout: React.FC = () => {
   return (
     <div
-      className="bg-cover bg-local min-h-screen  w-full"
+      className="bg-contain bg-center min-h-screen w-full"
       style={{ backgroundImage: `url(${starWarsBackground})` }}
     >
       <header>
