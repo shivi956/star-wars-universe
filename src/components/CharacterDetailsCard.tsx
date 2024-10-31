@@ -1,4 +1,6 @@
-type CharacterDetailsCardProps = {
+import Card from './Card';
+
+interface CharacterDetailsCardProps {
   name: string;
   hairColor: string;
   eyeColor: string;
@@ -8,7 +10,7 @@ type CharacterDetailsCardProps = {
   starshipNames: string[];
   isFavourite: boolean;
   onAddFavourite: () => void;
-};
+}
 
 const CharacterDetailsCard: React.FC<CharacterDetailsCardProps> = ({
   name,
@@ -21,9 +23,9 @@ const CharacterDetailsCard: React.FC<CharacterDetailsCardProps> = ({
   isFavourite,
   onAddFavourite,
 }) => (
-  <div
-    data-testid={'characterDetailsCard'}
-    className="container mx-auto mt-10 p-4 text-center bg-slate-400/95 rounded shadow-2xl w-96"
+  <Card
+    className="container mx-auto mt-10 p-4 text-center bg-slate-400/95 rounded shadow-2xl w-80"
+    dataTestId={'characterDetails-card'}
   >
     <h1 className="text-3xl font-bold mb-4">{name}</h1>
     <div className="mb-4">
@@ -72,7 +74,7 @@ const CharacterDetailsCard: React.FC<CharacterDetailsCardProps> = ({
     >
       {isFavourite ? 'Added to Favourites' : 'Add to Favourites'}
     </button>
-  </div>
+  </Card>
 );
 
 export default CharacterDetailsCard;

@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import Card from './Card';
 
-type CharacterCardProps = {
+interface CharacterCardProps {
   name: string;
   gender: string;
   homeworld: string;
@@ -8,7 +8,7 @@ type CharacterCardProps = {
   removeCard?: (name: string) => void;
   editCard?: () => void;
   cardClick?: () => void;
-};
+}
 
 const CharacterCard: React.FC<CharacterCardProps> = ({
   name,
@@ -19,27 +19,11 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   editCard,
   cardClick,
 }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const cardElement = cardRef.current;
-    if (cardElement && cardClick) {
-      cardRef.current.tabIndex = 0;
-      cardRef.current.addEventListener('click', cardClick);
-    }
-
-    return () => {
-      if (cardElement && cardClick) {
-        cardElement.addEventListener('click', cardClick);
-      }
-    };
-  }, [cardClick]);
-
   return (
-    <div
-      ref={cardRef}
-      data-testid={'character-card'}
-      className={`p-4 bg-slate-400/85 hover:bg-slate-400/95 hover: rounded shadow-2xl text-left transition duration-75 ease-in-out transform hover:scale-105 ${cardClick ? 'cursor-pointer' : 'cursor-default'}`}
+    <Card
+      className="p-4 bg-slate-400/95 hover:bg-slate-400/85 rounded shadow-2xl transition duration-75 ease-in-out transform hover:scale-105 cursor-pointer"
+      onClick={cardClick}
+      dataTestId={'character-card'}
     >
       <h2 className="text-xl font-bold">{name}</h2>
       <p>
@@ -79,7 +63,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
           </button>
         )}
       </div>
-    </div>
+    </Card>
   );
 };
 

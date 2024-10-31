@@ -46,7 +46,9 @@ const CharacterList = () => {
   }, [searchTerm]);
 
   useEffect(() => {
-    if (data?.characters) {setCharacters(data?.characters);}
+    if (data?.characters) {
+      setCharacters(data?.characters);
+    }
   }, [setCharacters, data?.characters, search]);
 
   const isLoadingAny = isLoading || isRefetching || isPlanetLoading;
@@ -88,8 +90,11 @@ const CharacterList = () => {
             currentPage={searchTerm ? searchPage : page}
             totalPages={Math.ceil((data?.count ?? 0) / 10)}
             onPageChange={(pageNumber) => {
-              if (searchTerm) {setSearchPage(pageNumber);}
-              else {setPage(pageNumber);}
+              if (searchTerm) {
+                setSearchPage(pageNumber);
+              } else {
+                setPage(pageNumber);
+              }
             }}
           />
         </>

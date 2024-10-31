@@ -17,7 +17,11 @@ const CharacterDetails = () => {
   const { characters, setCharacter } = useCharacterStore();
   const { favourites } = useFavouriteStore();
 
-  const { data: character, isLoading } = useQuery(
+  const {
+    data: character,
+    isLoading,
+    error,
+  } = useQuery(
     ['character-people', id],
     () => fetchCharacterDetails(id ?? ''),
     {
@@ -42,12 +46,17 @@ const CharacterDetails = () => {
     }
   }, [setCharacter, character]);
 
-  if (isLoadingAny)
-    {return (
+  if (isLoadingAny) {
+    return (
       <div className="text-center text-slate-100">
         <Loading />
       </div>
-    );}
+    );
+  }
+
+  if (error) {
+    return <div className="text-white">Error Loading Character Details</div>;
+  }
 
   const isFavourite = favourites.some((fav) => fav.name === character?.name);
 

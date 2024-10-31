@@ -10,7 +10,7 @@ const NavBar = () => {
           <img alt="light-saber" src={StarWarsLogo} width={50} />
           <Link
             to={`/`}
-            className="self-center text-4xl font-semibold whitespace-nowrap dark:text-white"
+            className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white"
           >
             Star Wars
           </Link>
@@ -19,7 +19,7 @@ const NavBar = () => {
           <img alt="light-saber" src={FavouriteLogo} width={30} />
           <Link
             to={`/favourites`}
-            className="font-semibold text-2xl whitespace-nowrap dark:text-white"
+            className="font-semibold text-xl whitespace-nowrap dark:text-white"
           >
             Favourites
           </Link>

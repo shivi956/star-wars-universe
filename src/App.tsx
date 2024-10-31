@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Suspense, lazy, useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import RootLayout from './layouts/RootLayout';
 import { useFavouriteStore } from './store/useFavouriteStore';
-import { Loading } from './components/Loading';
 
+// Lazy load components
 const CharacterDetails = lazy(() => import('./pages/CharacterDetails'));
 const CharacterList = lazy(() => import('./pages/CharacterList'));
 const Favourites = lazy(() => import('./pages/Favourites'));
@@ -44,17 +44,7 @@ function App() {
     setFavourites(storedFavourites);
   }, [setFavourites]);
 
-  return (
-    <Suspense
-      fallback={
-        <div className="text-black">
-          <Loading />
-        </div>
-      }
-    >
-      <RouterProvider router={router} />
-    </Suspense>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
