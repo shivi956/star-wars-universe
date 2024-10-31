@@ -52,7 +52,7 @@ mockFetchCharactersDetails.mockImplementation((id: string) => {
             films: [],
             starships: []
         })
-    } else {
+    } else if (id === '2') {
         return Promise.resolve({
             name: 'Leia Organa', gender: 'female', url: '/2',
             hair_color: "black",
@@ -61,6 +61,13 @@ mockFetchCharactersDetails.mockImplementation((id: string) => {
             height: "",
             films: ["/film/5"],
             starships: ["/starship/5"]
+        })
+    } else {
+        return Promise.reject({
+            status: 500,
+            data: {
+                message: 'Internal Server Error'
+            }
         })
     }
 }

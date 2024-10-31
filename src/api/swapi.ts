@@ -19,20 +19,20 @@ export const fetchCharacterDetails = async (id: string): Promise<Character> => {
 };
 
 
-export const fetchHomeworld = async (url: string): Promise<string> => {
-    const response = await axios.get(url);
+export const fetchHomeworld = async (homeworldUrl: string): Promise<string> => {
+    const response = await axios.get(homeworldUrl);
 
     return response.data.name;
 }
 
-export const fetchFilm = async (url: string): Promise<string> => {
-    const response = await axios.get(url);
+export const fetchFilm = async (filmUrl: string): Promise<string> => {
+    const response = await axios.get(filmUrl);
 
     return response.data.title;
 }
 
-export const fetchStarship = async (url: string): Promise<string> => {
-    const response = await axios.get(url);
+export const fetchStarship = async (starshipUrl: string): Promise<string> => {
+    const response = await axios.get(starshipUrl);
 
     return response.data.name;
 }

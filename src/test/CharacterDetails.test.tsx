@@ -100,7 +100,7 @@ describe('CharacterDetails', () => {
   });
 
   test('handles errors when loading films', async () => {
-    (useParams as jest.Mock).mockReturnValue({ id: '3' });
+    (useParams as jest.Mock).mockReturnValue({ id: '2' });
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -117,7 +117,7 @@ describe('CharacterDetails', () => {
   });
 
   test('handles errors when loading starships', async () => {
-    (useParams as jest.Mock).mockReturnValue({ id: '3' });
+    (useParams as jest.Mock).mockReturnValue({ id: '2' });
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -130,6 +130,25 @@ describe('CharacterDetails', () => {
     expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
     await waitFor(() => {
       expect(screen.getByText(/error loading starships/i)).toBeInTheDocument();
+    });
+  });
+
+  test('handles errors when loading character details', async () => {
+    (useParams as jest.Mock).mockReturnValue({ id: '3' });
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <StoreProvider>
+          <CharacterDetails />
+        </StoreProvider>
+      </QueryClientProvider>,
+    );
+
+    expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText(/error loading character details/i),
+      ).toBeInTheDocument();
     });
   });
 
