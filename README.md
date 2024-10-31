@@ -4,13 +4,13 @@ This app uses Swapi.dev api's to fetch and show the Star Wars character details.
 We can search any character by name and see its detail.
 We can add them to favourite and edit the character in favourite page.
 
-Project details
+<b>Project details</b>
 
-Used Vite+React+Typescript for this project.
-Steps to run the project
+Used <b>Vite + React + Typescript</b> for this project.
+Steps to run the project in local
 ```
 npm install
 
-npm run dev(in local)
+npm run dev
 
 ```
