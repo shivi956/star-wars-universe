@@ -15,16 +15,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          cd ../..
-          yarn install
-      - run: |
-          cd ../../shared-library
-          yarn build
+      - run: npm install
         name: Run Test and generate coverage
       - run: |
-          cd ../..
-          yarn test:coverage
+          npm run test:cov
           COVERAGE=$(grep -oP '(\d+\.\d+)%' ./coverage/lcov-report/index.html | head -n 1 | tr -d '%')
           echo "Test Coverage: $COVERAGE%"
 
@@ -37,18 +31,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          cd ../..
-          yarn install
-      - run: |
-          cd ../../shared-library
-          yarn build
-
+      - run: npm install
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           project: ./e2e-testing
-          start: yarn start
+          start: npm run dev
           browser: chrome
           wait-on: 'http://localhost:5173/'
 
