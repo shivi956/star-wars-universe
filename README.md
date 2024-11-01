@@ -141,6 +141,19 @@ npm run dev
 <p>We look forward to expanding the Star Wars Universe project with more features that immerse users into the world of Star Wars, making it a comprehensive and engaging experience for fans.</p>
 
 <h2>Architecture Diagram</h2>
-![star_wars_universe_flowchart](https://github.com/user-attachments/assets/7fe23e3c-9a65-4203-93b9-5ae2a8c5fbdd)
 
+![Screenshot_1-11-2024_133827_mermaid-js github io](https://github.com/user-attachments/assets/f0c08124-dc68-4111-85e4-c8b124c4f7b8)
+
+<b>Breakdown:</b>
+Client Side: Built with Vite + React. Manages user interface and interactions.
+
+Server Side: Uses the SWAPI.dev API to fetch Star Wars data.
+
+<b>Data Management:</b>
+
+React Query handles API calls and caching.
+
+Redux manages global state across components.
+
+Local State handles temporary data within components.
 
