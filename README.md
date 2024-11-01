@@ -43,6 +43,7 @@ npm run dev
       <li>React Query for API caching</li>
       <li>Redux Toolkit for global state</li>
       <li>ESLint for code quality</li>
+      <li>Husky and Commitlint for code quality pushes and good commit messages</li>
       <li>Additional libraries for testing and enhancing development</li>
     </ul>
   </li>
@@ -137,7 +138,7 @@ npm run dev
 
 <p>In the future, the application may incorporate real-time updates and notifications, where the cache duration for API responses could be shortened. Additional features, like sorting and filtering characters based on various attributes, could also enhance usability. Potential UI improvements could be implemented to further optimize performance on mobile devices.</p>
 
-<p>Furthermore, the architecture is designed with scalability in mind, allowing for easy integration of new features and services as the project grows. This flexibility will support the addition of new character categories, enhanced interactions, or even user-generated content, ensuring that the Star Wars Universe project can evolve to meet user demands while maintaining performance and usability.</p>
+<p>Furthermore, the architecture is designed with scalability in mind, allowing for easy integration of new features and services as the project grows. This flexibility will support the addition of new character categories, enhanced interactions, or even user-generated content, ensuring that the Star Wars Universe project can evolve to meet user demands while maintaining performance and usability.Also we have pipeline so we can add new code and tests and it will make our app testing also scalable and automated</p>
 
 <p>We look forward to expanding the Star Wars Universe project with more features that immerse users into the world of Star Wars, making it a comprehensive and engaging experience for fans.</p>
 
