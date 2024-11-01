@@ -39,7 +39,7 @@ const CharacterList = () => {
       setSearch(term);
     }, 300);
 
-    debouncedSearch(searchTerm);
+    debouncedSearch(searchTerm); //used debounce to reduce the number of api calls when user is searching the character by typing
 
     return () => {
       debouncedSearch.cancel();

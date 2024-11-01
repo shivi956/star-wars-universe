@@ -35,7 +35,7 @@ const Favourites = () => {
           />
         ))}
       </div>
-      {editCharacter &&
+      {editCharacter && //create portal is used to show the modal
         createPortal(
           <EditCharacterModal
             character={editCharacter}

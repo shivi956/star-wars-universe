@@ -22,8 +22,8 @@ jobs:
           COVERAGE=$(grep -oP '(\d+\.\d+)%' ./coverage/lcov-report/index.html | head -n 1 | tr -d '%')
           echo "Test Coverage: $COVERAGE%"
 
-      - name: Check coverage and trigger build if above 80%
-        if: ${{ env.COVERAGE && fromJson(env.COVERAGE) > 80 }}
+      - name: Check coverage and trigger build if above 90%
+        if: ${{ env.COVERAGE && fromJson(env.COVERAGE) > 90 }}
         run: echo "Coverage is above 80%, proceeding with build."
 
   E2E:
