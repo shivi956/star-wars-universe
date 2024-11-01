@@ -1,5 +1,6 @@
 <h1>Star Wars Universe</h1>
 
+<a href=https://star-wars-universe-eight.vercel.app/><b>Star Wars Universe Application</b></a>
 <p>This application leverages the <a href="https://swapi.dev">Swapi.dev API</a> to fetch and display details about Star Wars characters. Users can search for characters by name, view detailed profiles, add characters to a favorites list, and edit favorites.</p>
 
 <h2>Project Details</h2>
