@@ -124,6 +124,7 @@ npm run dev
   <li><b>Reusable Components:</b> Components such as <code>&lt;Card /&gt;</code> and <code>&lt;Modal /&gt;</code> are built to be reusable, making development faster and promoting consistent UI.</li>
   <li><b>Global State Management:</b> The Redux Toolkit provides centralized state management for favorites and character data, enabling easy access and updates across the app.</li>
   <li><b>Responsive UI:</b> Tailwind CSS is used to create a responsive and user-friendly interface.</li>
+  <li><b>Accessibility</b> Some accessibility aspects have been taken care of in code which enhances user experience</li>
 </ul>
 
 <h2>Testing</h2>
