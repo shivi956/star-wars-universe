@@ -24,6 +24,7 @@ const PaginationBar: React.FC<PaginationBarProps> = ({
       aria-label="pagination"
     >
       <button
+        data-testid="previousButton"
         className="px-4 py-2 bg-gray-200 hover:bg-blue-600 rounded disabled:opacity-50"
         aria-label="Previous page"
         disabled={currentPage === 1}
@@ -32,6 +33,7 @@ const PaginationBar: React.FC<PaginationBarProps> = ({
         &#x25C0;
       </button>
       <button
+        data-testid="nextButton"
         className="px-4 py-2 bg-gray-200 hover:bg-blue-600 rounded disabled:opacity-50"
         aria-label="Next page"
         disabled={currentPage === totalPages}
@@ -62,6 +64,7 @@ const PageButton: React.FC<PageButtonProps> = ({
   if (page === currentPage) {
     return (
       <button
+        data-testid={`page${page}Button`}
         className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
         aria-label={`Page ${page}`}
         aria-current="page"
@@ -78,6 +81,7 @@ const PageButton: React.FC<PageButtonProps> = ({
     <button
       className="px-4 py-2 hover:bg-blue-600 hover:text-white bg-gray-200 rounded"
       aria-label={`Go to page ${page}`}
+      data-testid={`page${page}Button`}
       onClick={onClick}
     >
       {page}

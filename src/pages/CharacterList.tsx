@@ -18,6 +18,7 @@ const CharacterList = () => {
   const [searchPage, setSearchPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [search, setSearch] = useState('');
+  console.log(searchTerm);
 
   const { data, isLoading, error, isRefetching, isRefetchError } = useQuery(
     ['characters', search ? `${search}-${searchPage}` : page],
@@ -58,6 +59,7 @@ const CharacterList = () => {
   return (
     <div className="container mx-auto p-4">
       <input
+        data-testid="searchBox"
         type="search"
         placeholder="Search by name"
         value={searchTerm}

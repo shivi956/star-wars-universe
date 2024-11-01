@@ -40,6 +40,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
       <div className="float-right">
         {editCard && (
           <button
+            data-testid="editCard"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -52,6 +53,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
         )}
         {removeCard && (
           <button
+            data-testid="removeCard"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();

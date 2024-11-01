@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "workspaces": [
+    "e2e-testing"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,7 +13,8 @@
     "lint": "eslint",
     "preview": "vite preview",
     "test": "jest --silent",
-    "test:cov": "jest --coverage --silent"
+    "test:cov": "jest --coverage --silent",
+    "e2e": "npm run e2e:start --workspaces=e2e-testing"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",

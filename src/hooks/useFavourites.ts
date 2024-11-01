@@ -8,6 +8,7 @@ export const useFavourites = () => {
         const updatedFavourites = [...favourites, character];
         setFavourites(updatedFavourites);
         localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
+        window.alert('Added to Favourites Successfully')
     };
 
     const updateFavourite = (character: Character) => {
@@ -20,15 +21,15 @@ export const useFavourites = () => {
         })
         setFavourites(updatedFavourites);
         localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
+        window.alert('Updated Favourite successfully')
 
-        return updatedFavourites;
-        ;
     };
 
     const removeFavourite = (name: string) => {
         const updatedFavourites = favourites.filter((char) => char.name !== name);
         setFavourites(updatedFavourites);
         localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
+        window.alert('Removed from Favourites')
     };
 
     return { addFavourite, removeFavourite, updateFavourite };

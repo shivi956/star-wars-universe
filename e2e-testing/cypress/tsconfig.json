@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "types": ["cypress"]
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

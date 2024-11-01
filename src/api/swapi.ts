@@ -1,3 +1,6 @@
+// This File contains methods to call APIs which are used in this project.
+// Axios is used here to call the API's due to its robustness features.
+
 import axios from 'axios';
 import { Character, CharacterListResponse } from '../utils/types';
 

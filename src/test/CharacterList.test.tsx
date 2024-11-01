@@ -108,6 +108,13 @@ describe('CharacterList Component', () => {
     await waitFor(() =>
       expect(fetchCharacters).toHaveBeenCalledWith(expect.anything(), 'Leia'),
     );
+
+    const nextButton = screen.getByText('▶');
+    fireEvent.click(nextButton);
+
+    await waitFor(() =>
+      expect(fetchCharacters).toHaveBeenCalledWith(2, 'Leia'),
+    );
     jest.useRealTimers();
   });
 
@@ -139,6 +146,44 @@ describe('CharacterList Component', () => {
 
     await waitFor(() => screen.getByText('Luke Skywalker'));
     fireEvent.click(screen.getByText('Luke Skywalker'));
+    expect(mockNavigate).toHaveBeenCalledWith('/character/1');
+  });
+
+  test('navigate to CharacterDetailsCard components after data is loaded and the card is selected using keyboard enter key', async () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <StoreProvider>
+          <MemoryRouter>
+            <CharacterList />
+          </MemoryRouter>
+        </StoreProvider>
+      </QueryClientProvider>,
+    );
+
+    await waitFor(() => screen.getByText('Luke Skywalker'));
+    fireEvent.keyPress(screen.getByText('Luke Skywalker'), {
+      key: 'Enter',
+      code: 'Enter',
+    });
+    expect(mockNavigate).toHaveBeenCalledWith('/character/1');
+  });
+
+  test('navigate to CharacterDetailsCard components after data is loaded and the card is selected using keyboard space key', async () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <StoreProvider>
+          <MemoryRouter>
+            <CharacterList />
+          </MemoryRouter>
+        </StoreProvider>
+      </QueryClientProvider>,
+    );
+
+    await waitFor(() => screen.getByText('Luke Skywalker'));
+    fireEvent.keyPress(screen.getByText('Luke Skywalker'), {
+      key: ' ',
+      code: ' ',
+    });
     expect(mockNavigate).toHaveBeenCalledWith('/character/1');
   });
 

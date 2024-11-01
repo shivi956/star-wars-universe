@@ -11,6 +11,7 @@ const NavBar = () => {
           <Link
             to={`/`}
             className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white"
+            data-testid="homePage"
           >
             Star Wars
           </Link>
@@ -20,6 +21,7 @@ const NavBar = () => {
           <Link
             to={`/favourites`}
             className="font-semibold text-xl whitespace-nowrap dark:text-white"
+            data-testid="favPage"
           >
             Favourites
           </Link>
