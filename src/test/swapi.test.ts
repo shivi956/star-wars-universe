@@ -1,114 +1,145 @@
 import axios from 'axios';
 jest.unmock('../api/swapi');
-import { fetchCharacters, fetchCharacterDetails, fetchHomeworld, fetchFilm, fetchStarship } from '../api/swapi'; // Adjust the import path as necessary
+import {
+  fetchCharacters,
+  fetchCharacterDetails,
+  fetchHomeworld,
+  fetchFilm,
+  fetchStarship,
+} from '../api/swapi'; // Adjust the import path as necessary
 import { Character, CharacterListResponse } from '../utils/types';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('API Utility Functions', () => {
-    afterEach(() => {
-        jest.clearAllMocks();
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  describe('fetchCharacters', () => {
+    test('fetches characters successfully', async () => {
+      const mockResponse: CharacterListResponse = {
+        count: 10,
+        characters: [
+          {
+            name: 'Luke Skywalker',
+            url: 'https://swapi.dev/api/people/1/',
+          } as Character,
+          {
+            name: 'Darth Vader',
+            url: 'https://swapi.dev/api/people/4/',
+          } as Character,
+        ],
+      };
+      mockedAxios.get.mockResolvedValueOnce({
+        data: { count: 10, results: mockResponse.characters },
+      });
+
+      const result = await fetchCharacters(1, '');
+
+      expect(result).toEqual(mockResponse);
+      expect(mockedAxios.get).toHaveBeenCalledWith(
+        'https://swapi.dev/api/people/',
+        {
+          params: { page: 1, search: '' },
+        },
+      );
     });
 
-    describe('fetchCharacters', () => {
-        it('fetches characters successfully', async () => {
-            const mockResponse: CharacterListResponse = {
-                count: 10,
-                characters: [
-                    { name: 'Luke Skywalker', url: 'https://swapi.dev/api/people/1/' } as Character,
-                    { name: 'Darth Vader', url: 'https://swapi.dev/api/people/4/' } as Character,
-                ],
-            };
-            mockedAxios.get.mockResolvedValueOnce({ data: { count: 10, results: mockResponse.characters } });
+    test('handles errors during fetching characters', async () => {
+      mockedAxios.get.mockRejectedValueOnce(new Error('Network error'));
 
-            const result = await fetchCharacters(1, '');
+      await expect(fetchCharacters(1, '')).rejects.toThrow('Network error');
+    });
+  });
 
-            expect(result).toEqual(mockResponse);
-            expect(mockedAxios.get).toHaveBeenCalledWith('https://swapi.dev/api/people/', {
-                params: { page: 1, search: '' },
-            });
-        });
+  describe('fetchCharacterDetails', () => {
+    test('fetches character details successfully', async () => {
+      const mockCharacter: Character = {
+        name: 'Luke Skywalker',
+        url: 'https://swapi.dev/api/people/1/',
+      } as Character;
+      mockedAxios.get.mockResolvedValueOnce({ data: mockCharacter });
 
-        it('handles errors during fetching characters', async () => {
-            mockedAxios.get.mockRejectedValueOnce(new Error('Network error'));
+      const result = await fetchCharacterDetails('1');
 
-            await expect(fetchCharacters(1, '')).rejects.toThrow('Network error');
-        });
+      expect(result).toEqual(mockCharacter);
+      expect(mockedAxios.get).toHaveBeenCalledWith(
+        'https://swapi.dev/api/people/1',
+      );
     });
 
-    describe('fetchCharacterDetails', () => {
-        it('fetches character details successfully', async () => {
-            const mockCharacter: Character = {
-                name: 'Luke Skywalker',
-                url: 'https://swapi.dev/api/people/1/',
-            } as Character;
-            mockedAxios.get.mockResolvedValueOnce({ data: mockCharacter });
+    test('handles errors during fetching character details', async () => {
+      mockedAxios.get.mockRejectedValueOnce(new Error('Network error'));
 
-            const result = await fetchCharacterDetails('1');
+      await expect(fetchCharacterDetails('1')).rejects.toThrow('Network error');
+    });
+  });
 
-            expect(result).toEqual(mockCharacter);
-            expect(mockedAxios.get).toHaveBeenCalledWith('https://swapi.dev/api/people/1');
-        });
+  describe('fetchHomeworld', () => {
+    test('fetches homeworld name successfully', async () => {
+      const mockHomeworld = { name: 'Tatooine' };
+      mockedAxios.get.mockResolvedValueOnce({ data: mockHomeworld });
 
-        it('handles errors during fetching character details', async () => {
-            mockedAxios.get.mockRejectedValueOnce(new Error('Network error'));
+      const result = await fetchHomeworld('https://swapi.dev/api/planets/1/');
 
-            await expect(fetchCharacterDetails('1')).rejects.toThrow('Network error');
-        });
+      expect(result).toEqual(mockHomeworld.name);
+      expect(mockedAxios.get).toHaveBeenCalledWith(
+        'https://swapi.dev/api/planets/1/',
+      );
     });
 
-    describe('fetchHomeworld', () => {
-        it('fetches homeworld name successfully', async () => {
-            const mockHomeworld = { name: 'Tatooine' };
-            mockedAxios.get.mockResolvedValueOnce({ data: mockHomeworld });
+    test('handles errors during fetching homeworld', async () => {
+      mockedAxios.get.mockRejectedValueOnce(new Error('Network error'));
 
-            const result = await fetchHomeworld('https://swapi.dev/api/planets/1/');
+      await expect(
+        fetchHomeworld('https://swapi.dev/api/planets/1/'),
+      ).rejects.toThrow('Network error');
+    });
+  });
 
-            expect(result).toEqual(mockHomeworld.name);
-            expect(mockedAxios.get).toHaveBeenCalledWith('https://swapi.dev/api/planets/1/');
-        });
+  describe('fetchFilm', () => {
+    test('fetches film title successfully', async () => {
+      const mockFilm = { title: 'A New Hope' };
+      mockedAxios.get.mockResolvedValueOnce({ data: mockFilm });
 
-        it('handles errors during fetching homeworld', async () => {
-            mockedAxios.get.mockRejectedValueOnce(new Error('Network error'));
+      const result = await fetchFilm('https://swapi.dev/api/films/1/');
 
-            await expect(fetchHomeworld('https://swapi.dev/api/planets/1/')).rejects.toThrow('Network error');
-        });
+      expect(result).toEqual(mockFilm.title);
+      expect(mockedAxios.get).toHaveBeenCalledWith(
+        'https://swapi.dev/api/films/1/',
+      );
     });
 
-    describe('fetchFilm', () => {
-        it('fetches film title successfully', async () => {
-            const mockFilm = { title: 'A New Hope' };
-            mockedAxios.get.mockResolvedValueOnce({ data: mockFilm });
+    test('handles errors during fetching film', async () => {
+      mockedAxios.get.mockRejectedValueOnce(new Error('Network error'));
 
-            const result = await fetchFilm('https://swapi.dev/api/films/1/');
+      await expect(fetchFilm('https://swapi.dev/api/films/1/')).rejects.toThrow(
+        'Network error',
+      );
+    });
+  });
 
-            expect(result).toEqual(mockFilm.title);
-            expect(mockedAxios.get).toHaveBeenCalledWith('https://swapi.dev/api/films/1/');
-        });
+  describe('fetchStarship', () => {
+    test('fetches starship name successfully', async () => {
+      const mockStarship = { name: 'X-wing' };
+      mockedAxios.get.mockResolvedValueOnce({ data: mockStarship });
 
-        it('handles errors during fetching film', async () => {
-            mockedAxios.get.mockRejectedValueOnce(new Error('Network error'));
+      const result = await fetchStarship('https://swapi.dev/api/starships/1/');
 
-            await expect(fetchFilm('https://swapi.dev/api/films/1/')).rejects.toThrow('Network error');
-        });
+      expect(result).toEqual(mockStarship.name);
+      expect(mockedAxios.get).toHaveBeenCalledWith(
+        'https://swapi.dev/api/starships/1/',
+      );
     });
 
-    describe('fetchStarship', () => {
-        it('fetches starship name successfully', async () => {
-            const mockStarship = { name: 'X-wing' };
-            mockedAxios.get.mockResolvedValueOnce({ data: mockStarship });
+    test('handles errors during fetching starship', async () => {
+      mockedAxios.get.mockRejectedValueOnce(new Error('Network error'));
 
-            const result = await fetchStarship('https://swapi.dev/api/starships/1/');
-
-            expect(result).toEqual(mockStarship.name);
-            expect(mockedAxios.get).toHaveBeenCalledWith('https://swapi.dev/api/starships/1/');
-        });
-
-        it('handles errors during fetching starship', async () => {
-            mockedAxios.get.mockRejectedValueOnce(new Error('Network error'));
-
-            await expect(fetchStarship('https://swapi.dev/api/starships/1/')).rejects.toThrow('Network error');
-        });
+      await expect(
+        fetchStarship('https://swapi.dev/api/starships/1/'),
+      ).rejects.toThrow('Network error');
     });
+  });
 });

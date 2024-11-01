@@ -28,7 +28,7 @@ describe('useFavourites hook', () => {
     localStorage.clear();
   });
 
-  it('adds a character to favourites', () => {
+  test('adds a character to favourites', () => {
     const { result } = renderHook(() => useFavourites());
 
     act(() => {
@@ -41,7 +41,7 @@ describe('useFavourites hook', () => {
     );
   });
 
-  it('updates an existing favourite character', () => {
+  test('updates an existing favourite character', () => {
     const updatedCharacter = { ...character, height: '175', gender: 'female' };
     (useFavouriteStore as jest.Mock).mockReturnValue({
       favourites: [character, { ...character, name: 'Boba frett' }],
@@ -62,7 +62,7 @@ describe('useFavourites hook', () => {
     );
   });
 
-  it('removes a character from favourites', () => {
+  test('removes a character from favourites', () => {
     (useFavouriteStore as jest.Mock).mockReturnValue({
       favourites: [character],
       setFavourites: setFavouritesMock,

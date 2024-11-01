@@ -23,7 +23,7 @@ describe('Favourites Component', () => {
     store.dispatch(setFavourites([]));
   });
 
-  it('displays a character card for each favourite character', () => {
+  test('displays a character card for each favourite character', () => {
     store.dispatch(setFavourites([testCharacter]));
 
     render(
@@ -36,7 +36,7 @@ describe('Favourites Component', () => {
     expect(characterCard).toBeInTheDocument();
   });
 
-  it('opens and closes the edit character modal', () => {
+  test('opens and closes the edit character modal', () => {
     store.dispatch(setFavourites([testCharacter]));
 
     render(
@@ -57,7 +57,7 @@ describe('Favourites Component', () => {
     expect(editModal).not.toBeInTheDocument();
   });
 
-  it('removes a character from favourites', () => {
+  test('removes a character from favourites', () => {
     store.dispatch(setFavourites([testCharacter]));
 
     render(
@@ -73,7 +73,7 @@ describe('Favourites Component', () => {
     expect(characterCard).not.toBeInTheDocument();
   });
 
-  it("updates a character's height and gender in the modal", () => {
+  test("updates a character's height and gender in the modal", () => {
     store.dispatch(setFavourites([testCharacter]));
 
     render(

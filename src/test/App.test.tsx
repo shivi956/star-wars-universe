@@ -17,7 +17,7 @@ global['Request'] = jest.fn().mockImplementation(() => ({
   },
 }));
 describe('Index file', () => {
-  it('renders App component wrapped with providers', async () => {
+  test('renders App component wrapped with providers', async () => {
     const { getByText, getAllByTestId } = render(
       <QueryClientProvider client={queryClient}>
         <StoreProvider>
@@ -35,7 +35,7 @@ describe('Index file', () => {
     });
   });
 
-  it('renders characterDetails card', async () => {
+  test('renders characterDetails card', async () => {
     const { getAllByTestId, getByText, queryByText } = render(
       <QueryClientProvider client={queryClient}>
         <StoreProvider>
@@ -60,7 +60,7 @@ describe('Index file', () => {
     expect(detailsCard.length).toBe(1);
   });
 
-  it('renders favouritePage', async () => {
+  test('renders favouritePage', async () => {
     const { getByText, getAllByText } = render(
       <QueryClientProvider client={queryClient}>
         <StoreProvider>
@@ -78,7 +78,7 @@ describe('Index file', () => {
     expect(favouriteText.length).toBe(2);
   });
 
-  it('should navigate to the error page for unknown routes', async () => {
+  test('should navigate to the error page for unknown routes', async () => {
     const { getByText } = render(
       <QueryClientProvider client={queryClient}>
         <StoreProvider>

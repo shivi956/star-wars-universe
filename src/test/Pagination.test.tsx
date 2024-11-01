@@ -18,7 +18,7 @@ describe('PaginationBar', () => {
     onPageChange.mockClear();
   });
 
-  it('renders navigation buttons and page numbers', () => {
+  test('renders navigation buttons and page numbers', () => {
     renderPagination(1, 5);
 
     expect(screen.getByLabelText('Previous page')).toBeInTheDocument();
@@ -29,28 +29,28 @@ describe('PaginationBar', () => {
     }
   });
 
-  it('disables the previous button on the first page', () => {
+  test('disables the previous button on the first page', () => {
     renderPagination(1, 5);
 
     expect(screen.getByLabelText('Previous page')).toBeDisabled();
     expect(screen.getByLabelText('Next page')).not.toBeDisabled();
   });
 
-  it('disables the next button on the last page', () => {
+  test('disables the next button on the last page', () => {
     renderPagination(5, 5);
 
     expect(screen.getByLabelText('Next page')).toBeDisabled();
     expect(screen.getByLabelText('Previous page')).not.toBeDisabled();
   });
 
-  it('calls onPageChange when a page button is clicked', () => {
+  test('calls onPageChange when a page button is clicked', () => {
     renderPagination(2, 5);
 
     fireEvent.click(screen.getByText('3'));
     expect(onPageChange).toHaveBeenCalledWith(3);
   });
 
-  it('calls onPageChange with previous and next page buttons', () => {
+  test('calls onPageChange with previous and next page buttons', () => {
     renderPagination(3, 5);
 
     fireEvent.click(screen.getByLabelText('Previous page'));
@@ -60,14 +60,14 @@ describe('PaginationBar', () => {
     expect(onPageChange).toHaveBeenCalledWith(4);
   });
 
-  it('renders ellipsis for large page counts', () => {
+  test('renders ellipsis for large page counts', () => {
     renderPagination(5, 10);
 
     // Check for the ellipsis markers
     expect(screen.getAllByText('…')).toHaveLength(2);
   });
 
-  it('does not trigger onPageChange when ellipsis is clicked', () => {
+  test('does not trigger onPageChange when ellipsis is clicked', () => {
     renderPagination(5, 10);
 
     // Clicking on ellipsis markers should not call onPageChange
@@ -75,7 +75,7 @@ describe('PaginationBar', () => {
     expect(onPageChange).not.toHaveBeenCalled();
   });
 
-  it('shows the current page as active', () => {
+  test('shows the current page as active', () => {
     renderPagination(3, 5);
 
     // Verify the current page button is styled as active
@@ -83,7 +83,7 @@ describe('PaginationBar', () => {
     expect(activePage).toHaveClass('bg-blue-500');
   });
 
-  it('renders PageButton with ellipsis "<" and ">"', () => {
+  test('renders PageButton with ellipsis "<" and ">"', () => {
     renderPagination(4, 10);
 
     // Check if PageButton renders "<" and ">" as spans with ellipsis
@@ -97,7 +97,7 @@ describe('PaginationBar', () => {
     });
   });
 
-  it('renders PageButton with ellipsis "<" and ">"', () => {
+  test('renders PageButton with ellipsis "<" and ">"', () => {
     renderPagination(8, 10);
 
     // Check if PageButton renders "<" and ">" as spans with ellipsis
@@ -111,7 +111,7 @@ describe('PaginationBar', () => {
     });
   });
 
-  it('handles large number of pages correctly', () => {
+  test('handles large number of pages correctly', () => {
     renderPagination(10, 20);
 
     // Check for the ellipsis and correct page numbers

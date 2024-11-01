@@ -10,7 +10,7 @@ describe('ErrorPage', () => {
       </BrowserRouter>,
     );
 
-  it('renders the 404 error message', () => {
+  test('renders the 404 error message', () => {
     renderErrorPage();
 
     expect(screen.getByText('404 - Not Found')).toBeInTheDocument();
@@ -23,7 +23,7 @@ describe('ErrorPage', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders the "Go to Home" link with correct styling and route', () => {
+  test('renders the "Go to Home" link with correct styling and route', () => {
     renderErrorPage();
 
     const homeLink = screen.getByText('Go to Home');
